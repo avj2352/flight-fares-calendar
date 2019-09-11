@@ -1,0 +1,44 @@
+{
+  "name": "flight-fares-api",
+  "version": "1.0.0",
+  "description": "api for finding flight fares using rapid api",
+  "main": "index.js",
+  "engines": {
+    "node": "8.12.0",
+    "npm": "6.4.1"
+  },
+  "scripts": {
+    "start": "node ./build/index.js",
+    "dev": "nodemon ./src/index.js --exec babel-node -e js",
+    "test": "npx mocha --compilers js:babel-core/register --require babel-polyfill --exit --recursive test/",
+    "build": "npm run test && npm run build-babel",
+    "build-babel": "babel -d ./build ./src -s",
+    "clean": "del build && mkdir build"
+  },
+  "keywords": [
+    "api",
+    "express",
+    "node"
+  ],
+  "author": "pramod",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "unirest": "^0.6.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "chai-http": "^4.2.0",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.19.1"
+  }
+}

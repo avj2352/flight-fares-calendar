@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/routes/app.routes.js"],"names":["routes","app"],"mappings":";;;;;AAAA;;;AAGA,IAAMA,SAAS,SAATA,MAAS,CAACC,GAAD,EAAS,CAEvB,CAFD;;kBAIeD,M","file":"app.routes.js","sourcesContent":["/**\r\n * Main Webservice Routes application\r\n*/\r\nconst routes = (app) => {\r\n    \r\n};\r\n\r\nexport default routes;"]}
