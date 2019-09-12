@@ -14,4 +14,14 @@ _Your task is to find the flight status for a month and display them in a calend
 3. KUL – SFO 
 ```
 
-http://partners.api.skyscanner.net/apiservices/pricing/hk1/v1.0/3f6d1606-c0ca-445e-8cbe-a0325bcef21e
+- [API Link](http://partners.api.skyscanner.net/apiservices/pricing/hk1/v1.0/3f6d1606-c0ca-445e-8cbe-a0325bcef21e)
+
+---
+
+# Color Pallette
+
+- #0086FF
+- #00B4FF
+- #47CF73
+- #445878
+- #9ca0b1
