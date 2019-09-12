@@ -1,3 +1,7 @@
+# Important Links
+
+- [Flight Search API](https://medium.com/rakuten-rapidapi/skyscanner-api-tutorial-on-rakuten-rapidapi-5b89acb8be1)
+
 # Objective 
 _To display flights fares for selected month in calendar view_
  
