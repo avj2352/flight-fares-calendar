@@ -30,3 +30,7 @@ h1 {
 .navbar {
     transition: all 3s ease;
 }
+
+.gradient {
+    background: linear-gradient(0deg, #2699FB 0%, #1e52b4 100%);
+}

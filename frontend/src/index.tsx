@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './app/App';
 import { AppProvider } from './common/context/AppContext';
 import * as serviceWorker from './serviceWorker';
+// CSS
+import './assets/css/animate.css';
+import './index.css';
 
 ReactDOM.render (
     <AppProvider >
