@@ -1,0 +1,28 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+
+/** Directives in Tailwind*/
+
+h1 {
+    @apply text-2xl font-bold;
+}
+
+.btn {
+    @apply text-white font-bold py-2 px-4 rounded;
+}
+
+.btn-blue {
+    @apply bg-blue-500;
+}
+
+.btn-blue:hover {
+    @apply bg-blue-400;
+}
+
+.btn-blue:focus {
+    @apply shadow-outline;
+}
