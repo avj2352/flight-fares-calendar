@@ -26,3 +26,7 @@ h1 {
 .btn-blue:focus {
     @apply shadow-outline;
 }
+
+.navbar {
+    transition: all 3s ease;
+}
