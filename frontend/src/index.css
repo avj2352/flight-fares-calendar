@@ -8604,6 +8604,15 @@ h1 {
 
 .gradient {
   background: linear-gradient(0deg, #2699FB 0%, #1e52b4 100%);
+  /* height:30rem; */
+}
+
+.wave {
+  top: 6rem;
+}
+
+.radio-group input{
+  cursor: pointer;
 }
 
 @media (min-width: 640px) {
@@ -39573,3 +39582,4 @@ h1 {
     z-index: auto;
   }
 }
+
