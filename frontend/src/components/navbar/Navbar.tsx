@@ -10,7 +10,7 @@ const Navbar:FunctionComponent<{}> = () => {
 
   // event handling
   const displayAppInfo = ():void => {
-      appContext.addNotification('ABOUT', `${appContext.name} version ${appContext.version}`, 'success', 2000);
+      appContext.addNotification('ABOUT', `${appContext.name} version ${appContext.version}`, 'info', 2000);
   }
 
   //componentDidMount

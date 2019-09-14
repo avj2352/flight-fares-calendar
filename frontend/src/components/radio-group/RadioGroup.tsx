@@ -7,7 +7,7 @@ type IconProps = {
 const RadioGroup: FunctionComponent<IconProps> = (props) =>{
     return (
         <React.Fragment>
-            <div className="radio-group my-5 inline-flex items-center">
+            <div className="radio-group mx-2 my-5 inline-flex items-center">
                 <input type="radio" className="form-radio" name="radio" value="1" defaultChecked/>
                 <span className="ml-2 mr-4">One Way</span>
                 <input type="radio" className="form-radio" name="radio" value="2" disabled/>

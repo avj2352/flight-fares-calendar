@@ -16,8 +16,8 @@ const initialState = {
             width:300,
             message: description,
             type: notificationType,
-            insert: "top",
-            container: "top-right",
+            insert: "bottom",
+            container: "bottom-right",
             animationIn: ["animated", "fadeIn"],
             animationOut: ["animated", "fadeOut"],
             dismiss: {
