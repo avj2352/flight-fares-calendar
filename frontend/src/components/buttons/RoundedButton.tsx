@@ -1,5 +1,7 @@
+/**
+ * Reusable Rounded Button Component
+ */
 import React, { FunctionComponent } from 'react';
-import { Function } from '@babel/types';
 
 type ISelectOption = {
     title: string,

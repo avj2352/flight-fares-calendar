@@ -8615,6 +8615,39 @@ h1 {
   cursor: pointer;
 }
 
+.react-calendar__tile {
+  height: 55px;
+}
+
+.cell-amount {
+  color: #2699FB;
+  font-size: 10px;
+}
+
+.react-calendar__tile--active .cell-amount {
+  color: white;
+}
+
+.footer {
+  margin-top: 15rem;
+}
+
+/* Medium (md) */
+
+@media (min-width: 768px) {
+  .footer {
+    margin-top: 10rem;
+  }
+}
+
+/* Large (lg) */
+
+@media (min-width: 1024px) {
+  .footer {
+    margin-top: 7rem;
+  }
+}
+
 @media (min-width: 640px) {
   .sm\:sr-only {
     position: absolute;
@@ -39582,4 +39615,3 @@ h1 {
     z-index: auto;
   }
 }
-

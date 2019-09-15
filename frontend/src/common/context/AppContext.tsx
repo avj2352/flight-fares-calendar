@@ -8,10 +8,12 @@ import { store } from 'react-notifications-component';
 const initialState = { 
     version: '1.0.01',
     name: 'Flight Fares Calendar',
+    origin: 'SIN',
+    destination: 'KUL',
     addNotification:(title: string = 'NOTE', description: string, type?: string, duration?: number ):any => {
         const notificationType: string = type ? type: `success`;
         const timing: number = duration ? duration: 5000;
-        store.addNotification ({
+        return store.addNotification ({
             title: title,
             width:300,
             message: description,
@@ -24,7 +26,10 @@ const initialState = {
               duration: timing,
               onScreen: true
             }
-          });
+        });
+    },
+    removeNotification:(id: any):any => {
+        store.removeNotification(id);
     }
 };
 

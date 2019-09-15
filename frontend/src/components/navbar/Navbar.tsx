@@ -19,7 +19,7 @@ const Navbar:FunctionComponent<{}> = () => {
 
   return (    
     <React.Fragment>
-        <nav id="header" className=" fixed w-full z-30 top-0 bg-blue-500 shadow">    
+        <nav id="header" className="z-50 fixed w-full z-30 top-0 bg-blue-500 shadow">    
         <div className="navbar w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">                
             <div className="pl-4 flex">
               <AirplaneIcon color={`white`}/>
