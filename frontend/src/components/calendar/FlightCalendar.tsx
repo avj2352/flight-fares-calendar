@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useState } from "react";
 import Calendar from 'react-calendar';
+import { monthNames, dayNames } from './../fare-details-form/month-details';
 
 type CalendarProps = {    
     onChange:(evt: any) => void,
@@ -8,12 +9,17 @@ type CalendarProps = {
     data: []
 };
 
-const FlightCalendar: FunctionComponent<CalendarProps> = (props) =>{
-    const [date, setDate] = useState(new Date);
+const FlightCalendar: FunctionComponent<CalendarProps> = (props) =>{    
 
     const dateHandler = (date: any) => {
-        setDate(date);
-        props.onChange(date);
+        props.data.map((item) => {
+            if (date.getDate() === new Date(item['data']['outBoundDate']).getDate()) {
+                const amount = (item['data']['quotes'] && item['data']['quotes'][0]) ? `\$ ${item['data']['quotes'][0]['MinPrice']}` : 'NA' ;
+                const month = monthNames[date.getMonth()];
+                const day = dayNames[date.getDay()];
+                props.onChange({date: date.getDate(), amount: amount, month: month, day: day});
+            }
+        });
     };
 
     const tileContentDisplay = ({ date, view }:any):any => {
@@ -24,7 +30,7 @@ const FlightCalendar: FunctionComponent<CalendarProps> = (props) =>{
                 return props.data.map((item, index) => {
                     if (date.getDate() === new Date(item['data']['outBoundDate']).getDate()) {
                         // console.log('Match', item['data']['quotes'][0]['MinPrice']);
-                        const amount = item['data']['quotes'] ? `\$ ${item['data']['quotes'][0]['MinPrice']}` : 'NA' ;
+                        const amount = (item['data']['quotes'] && item['data']['quotes'][0]) ? `\$ ${item['data']['quotes'][0]['MinPrice']}` : 'NA' ;
                         // console.log('Match', amount);
                         return <p key={index} className="cell-amount">{amount}</p>;
                     } else {

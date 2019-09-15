@@ -6,18 +6,23 @@ import { Function } from '@babel/types';
 
 type IFooter = {
     title: string,
-    display: boolean
+    display: boolean,
+    date: number,
+    amount: string,
+    month: string,
+    day: string
 };
 
 const Footer: FunctionComponent<IFooter> = (props) => {
+    const { date, amount, month, day } = props;
     const footer = props.display && <div className="relative footer container py-6 flex flex-wrap flex-col">
                     <div className="bg-blue-500 px-4 py-6 rounded text-white font-bold shadow">
                         <h2>{props.title}</h2>
                     </div>
                     <div
                         className="bg-blue-200 px-4 py-6 flex flex-wrap flex-row align-center justify-between font-bold shadow">
-                        <p className="text-xl">THU, 14 Sep</p>
-                        <p className="text-xl">$ 650 <span className="text-xs">(price per adult)</span></p>
+                        <p className="text-xl">{day}, {date} {month}</p>
+                        <p className="text-xl ml-2">{amount} <span className="text-xs">(price per adult)</span></p>
                         <button className="                    
                         outline-none 
                         focus:outline-none 

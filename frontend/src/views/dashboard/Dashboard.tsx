@@ -17,15 +17,18 @@ const Dashboard:FunctionComponent<{}> = () => {
   const [flightDisplay, setFlightDisplay] = useState(false);
   const [calendarDate, setCalendarDate] = useState('');  
   const [calendarResult, setCalendarResult] = useState();
+  const [footerData, setFooterData] = useState({date: 0, amount: '', month: '',  day: ''});
 
   // Calendar date handler
-  const dateHandler = (date: any) => {
-    console.log('Date Changed !', date);
+  const dateHandler = (data: any) => {
+    // console.log('Date Changed !', data);
+    setFooterData({...data});
     setFooterDisplay(true);
   }
 
   const submitForm = (data: any) => {
-    const {origin, destination, month} = data;
+    setFooterDisplay(false);
+    const {origin, destination, month} = data;    
     const noticeId = appContext.addNotification('FETCHING DETAILS', `Fetching Details, please wait...`, 'info', 10000);
     const query: IBrowseFlightsPromise = getMonthlyPromiseList({origin, destination, month});
     Promise.all(query.promiseList)
@@ -35,7 +38,7 @@ const Dashboard:FunctionComponent<{}> = () => {
       appContext.addNotification(`${origin} > ${destination}`, `showing fares for the month: ${monthNames[new Date(query.sDate).getMonth()]}`, 'success', 5000);
       setCalendarDate(query.sDate);
       appContext.removeNotification(noticeId);
-      console.log('response is: ', result);
+      // console.log('response is: ', result);
     }, error => {
       appContext.removeNotification(noticeId);
       appContext.addNotification('ERROR', `Error while fetching data`, 'danger', 5000);
@@ -63,7 +66,13 @@ const Dashboard:FunctionComponent<{}> = () => {
         </div>
       <WaveIcon/>
       </div>
-      <Footer display={footerDisplay} title={`FARE DETAILS`}/>
+      <Footer 
+        title={`FARE DETAILS`} 
+        display={footerDisplay} 
+        date={footerData.date} 
+        amount={footerData.amount} 
+        month={footerData.month}
+        day={footerData.day}/>
     </React.Fragment>
   );
   
