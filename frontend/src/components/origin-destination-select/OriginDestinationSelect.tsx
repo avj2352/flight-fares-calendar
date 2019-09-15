@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, useContext, useRef } from 'react';
+import React, { FunctionComponent, useContext } from 'react';
 import Icon from 'react-icons-kit';
 import { ic_swap_horiz } from 'react-icons-kit/md/ic_swap_horiz';
 import { ic_swap_vert  } from 'react-icons-kit/md/ic_swap_vert';
@@ -11,9 +11,9 @@ type ISelectOption = {
 
 const OriginDestinationSelect:FunctionComponent<ISelectOption> = (props) => {
     const appContext = useContext(AppContext);
+
     // eventHandlers 
-    const selectHandler = (evt: any) => {
-        // console.log('Dropdown select', evt.target.name, evt.target.value);                
+    const selectHandler = (evt: any) => {                  
         let originRef: any = document.getElementById('origin');
         let destinationRef: any = document.getElementById('destination');
         if (evt.target.name === 'origin') {
@@ -23,7 +23,7 @@ const OriginDestinationSelect:FunctionComponent<ISelectOption> = (props) => {
                 appContext.origin = originRef.value;
             }
             else {
-                console.log('Setting origin value as: ', evt.target.value);
+                // console.log('Setting origin value as: ', evt.target.value);
                 appContext.origin = evt.target.value;
             }
         } else if (evt.target.name === 'destination') {
@@ -33,11 +33,23 @@ const OriginDestinationSelect:FunctionComponent<ISelectOption> = (props) => {
                 appContext.destination = destinationRef.value;
             }
             else {
-                console.log('Setting destination value as: ', evt.target.value);
+                // console.log('Setting destination value as: ', evt.target.value);
                 appContext.destination = evt.target.value;
             }
         } 
-    }
+    };
+
+    const swapFields = (evt:any) => {
+        // console.log('Swapping fields');
+        let originRef: any = document.getElementById('origin');
+        let destinationRef: any = document.getElementById('destination');
+        const temp = originRef.value;
+        originRef.value = destinationRef.value;
+        destinationRef.value = temp;
+        appContext.origin = originRef.value;
+        appContext.destination = destinationRef.value;
+    };
+
     return (
         <React.Fragment>            
                 <div className="w-full md:w-1/2 mx-2 mb-2 md:mb-0">
@@ -51,12 +63,12 @@ const OriginDestinationSelect:FunctionComponent<ISelectOption> = (props) => {
                         </select>
                     </div>
                 </div>
-                <button title="swap ports"
+                <button title="swap ports" onClick={swapFields}
                 className="hidden md:block block outline-none md:mt-6
                 focus:outline-none hover:bg-indigo-100 self-end flex mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-1 py-1 px-2 shadow opacity-75">
                     <Icon size={30} icon={ic_swap_horiz} />                    
                 </button>
-                <button title="swap ports"
+                <button title="swap ports" onClick={swapFields}
                 className="md:hidden block outline-none md:mt-6
                 focus:outline-none hover:bg-indigo-100 self-end flex mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-1 py-1 px-2 shadow opacity-75">                    
                     <Icon size={30} icon={ic_swap_vert} />
