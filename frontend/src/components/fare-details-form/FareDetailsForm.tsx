@@ -7,6 +7,7 @@ import RadioGroup from './../radio-group/RadioGroup';
 import OriginDestinationSelect from './../origin-destination-select/OriginDestinationSelect';
 import Select from './../select/Select';
 import RoundedButton from './../buttons/RoundedButton';
+import { monthOptions, cabinDetails } from './month-details';
 
 type IFormOption = {    
     onSubmit:(data: any) => void
@@ -29,8 +30,8 @@ const FareDetailsForm:FunctionComponent<IFormOption> = (props) => {
             <RadioGroup />
             <div className="w-full flex flex-1 flex-col align-center md:flex-row">
                 <OriginDestinationSelect onChange={odSelectChangeHandler}/>
-                <Select title={`Select Month`} />
-                <Select title={`Cabin, Class & Travellers`} />
+                <Select title={`Select Month`} options={monthOptions} />
+                <Select title={`Cabin, Class & Travellers`} options={cabinDetails} />
             </div>
             <div className="w-full flex flex-wrap flex-row justify-center">
                 <RoundedButton title="Find Fares" onClick={clickHandler} />
