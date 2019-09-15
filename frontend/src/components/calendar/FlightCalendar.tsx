@@ -4,7 +4,8 @@ import Calendar from 'react-calendar';
 type CalendarProps = {    
     onChange:(evt: any) => void,
     display: boolean,    
-    value: string
+    value: string,
+    data: []
 };
 
 const FlightCalendar: FunctionComponent<CalendarProps> = (props) =>{
@@ -16,26 +17,42 @@ const FlightCalendar: FunctionComponent<CalendarProps> = (props) =>{
     };
 
     const tileContentDisplay = ({ date, view }:any):any => {
+        // console.log(date.getDate());
         if(view === 'month') {
-            switch(date.getDay()) {
-                case 0:
-                    return <p className="cell-amount">$ 100</p>;
-                case 1:
-                    return <p className="cell-amount">$ 300</p>;
-                case 2:
-                    return <p className="cell-amount">$ 400</p>;
-                case 3:
-                    return <p className="cell-amount">$ 450</p>;
-                case 4:
-                    return <p className="cell-amount">$ 500</p>;
-                case 5:
-                    return <p className="cell-amount">$ 600</p>;
-                case 6:
-                    return <p className="cell-amount">$ 650</p>;
-
-                default:
-                    return null;
-            }
+            // console.log('Result is: ', props.data);
+            if(props.data) {
+                return props.data.map((item, index) => {
+                    if (date.getDate() === new Date(item['data']['outBoundDate']).getDate()) {
+                        // console.log('Match', item['data']['quotes'][0]['MinPrice']);
+                        const amount = item['data']['quotes'] ? `\$ ${item['data']['quotes'][0]['MinPrice']}` : 'NA' ;
+                        // console.log('Match', amount);
+                        return <p key={index} className="cell-amount">{amount}</p>;
+                    } else {
+                        // console.log('Not a Match');
+                        return null;
+                    }
+                });
+            } else {
+                switch(date.getDay()) {
+                    case 0:
+                        return <p className="cell-amount">$ 100</p>;
+                    case 1:
+                        return <p className="cell-amount">$ 300</p>;
+                    case 2:
+                        return <p className="cell-amount">$ 400</p>;
+                    case 3:
+                        return <p className="cell-amount">$ 450</p>;
+                    case 4:
+                        return <p className="cell-amount">$ 500</p>;
+                    case 5:
+                        return <p className="cell-amount">$ 600</p>;
+                    case 6:
+                        return <p className="cell-amount">$ 650</p>;
+    
+                    default:
+                        return null;
+                }
+            }            
         }        
     };
 

@@ -10,8 +10,7 @@ const initialState = {
     name: 'Flight Fares Calendar',
     origin: 'SIN',
     destination: 'KUL',
-    month: 'SEP',
-    flightFaresList:[],
+    month: 'SEP',    
     addNotification:(title: string = 'NOTE', description: string, type?: string, duration?: number ):any => {
         const notificationType: string = type ? type: `success`;
         const timing: number = duration ? duration: 5000;

@@ -16,6 +16,7 @@ const Dashboard:FunctionComponent<{}> = () => {
   const [footerDisplay, setFooterDisplay] = useState(false);
   const [flightDisplay, setFlightDisplay] = useState(false);
   const [calendarDate, setCalendarDate] = useState('');  
+  const [calendarResult, setCalendarResult] = useState();
 
   // Calendar date handler
   const dateHandler = (date: any) => {
@@ -29,7 +30,8 @@ const Dashboard:FunctionComponent<{}> = () => {
     const query: IBrowseFlightsPromise = getMonthlyPromiseList({origin, destination, month});
     Promise.all(query.promiseList)
     .then (result => {
-      setFlightDisplay(true);
+      setFlightDisplay(true);  
+      setCalendarResult(result);
       appContext.addNotification(`${origin} > ${destination}`, `showing fares for the month: ${monthNames[new Date(query.sDate).getMonth()]}`, 'success', 5000);
       setCalendarDate(query.sDate);
       appContext.removeNotification(noticeId);
@@ -54,7 +56,7 @@ const Dashboard:FunctionComponent<{}> = () => {
             <p className="mt-2 md:mt-0 mx-2 uppercase tracking-loose w-full">Fill in the below flight details</p>
             <FareDetailsForm onSubmit={submitForm}/>
             <div className="w-full relative flex flex-wrap flex-row justify-center">
-              <FlightCalendar value={calendarDate} display={flightDisplay} onChange={dateHandler}/>
+              <FlightCalendar data={calendarResult} value={calendarDate} display={flightDisplay} onChange={dateHandler}/>
             </div>
 
           </div>
