@@ -14,7 +14,7 @@ export class FlightsController {
             sDate: req.body.sDate,            
         }).then(
             success => {
-                res.status(201).json(success);
+                res.status(200).json(success);
             },
             error => {
                 res.status(400).send(error);

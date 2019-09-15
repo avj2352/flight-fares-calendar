@@ -7,7 +7,7 @@ import {ISession, createSession} from './../../common/async/async-requests';
 import FlightCalendar from '../../components/calendar/FlightCalendar';
 import Footer from '../../components/footer/Footer';
 import FareDetailsForm from '../../components/fare-details-form/FareDetailsForm';
-import { getSinglePromise } from './../../components/fare-details-form/month-details';
+import { getSinglePromise, IBrowseFlightsPromise, getMonthlyPromiseList } from './../../components/fare-details-form/month-details';
 
 // our components props accept a number for the initial value
 const Dashboard:FunctionComponent<{}> = () => {
@@ -24,12 +24,12 @@ const Dashboard:FunctionComponent<{}> = () => {
 
   const submitForm = (data: any) => {
     const {origin, destination, month} = data;
-    const noticeId = appContext.addNotification('FETCHING DETAILS', `Fetching Details, please wait...`, 'info', 5000);
-    const promise = getSinglePromise({origin, destination, month});
-    promise
+    const noticeId = appContext.addNotification('FETCHING DETAILS', `Fetching Details, please wait...`, 'info', 10000);
+    const query: IBrowseFlightsPromise = getMonthlyPromiseList({origin, destination, month});
+    Promise.all(query.promiseList)
     .then (result => {
       appContext.removeNotification(noticeId);
-      console.log('response is: ', result.data);
+      console.log('response is: ', result);
     }, error => {
       appContext.removeNotification(noticeId);
       appContext.addNotification('ERROR', `Error while fetching data`, 'danger', 5000);
