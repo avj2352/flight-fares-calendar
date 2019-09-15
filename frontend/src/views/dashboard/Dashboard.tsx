@@ -7,6 +7,7 @@ import {ISession, createSession} from './../../common/async/async-requests';
 import FlightCalendar from '../../components/calendar/FlightCalendar';
 import Footer from '../../components/footer/Footer';
 import FareDetailsForm from '../../components/fare-details-form/FareDetailsForm';
+import { getSinglePromise } from './../../components/fare-details-form/month-details';
 
 // our components props accept a number for the initial value
 const Dashboard:FunctionComponent<{}> = () => {
@@ -21,19 +22,18 @@ const Dashboard:FunctionComponent<{}> = () => {
     console.log('Date Changed !', date);
   }
 
-  const submitForm = (evt: any) => {
-    const noticeId = appContext.addNotification('FETCHING DETAILS', `Fetching Details, please wait...`, 'info', 5000);    
-    const session: ISession = {
-      origin: 'SIN',
-      destination: 'KUL',
-      sDate: `2019-09-14`,
-      eDate: `2019-09-30`
-    };
-
-    createSession(session)
+  const submitForm = (data: any) => {
+    const {origin, destination, month} = data;
+    const noticeId = appContext.addNotification('FETCHING DETAILS', `Fetching Details, please wait...`, 'info', 5000);
+    const promise = getSinglePromise({origin, destination, month});
+    promise
     .then (result => {
       appContext.removeNotification(noticeId);
       console.log('response is: ', result.data);
+    }, error => {
+      appContext.removeNotification(noticeId);
+      appContext.addNotification('ERROR', `Error while fetching data`, 'danger', 5000);
+      console.log(error);
     });
   };
 

@@ -6,10 +6,12 @@ import React, { Component, } from 'react';
 import { store } from 'react-notifications-component';
 
 const initialState = { 
-    version: '1.0.01',
+    version: '1.0.10',
     name: 'Flight Fares Calendar',
     origin: 'SIN',
     destination: 'KUL',
+    month: 'SEP',
+    flightFaresList:[],
     addNotification:(title: string = 'NOTE', description: string, type?: string, duration?: number ):any => {
         const notificationType: string = type ? type: `success`;
         const timing: number = duration ? duration: 5000;
