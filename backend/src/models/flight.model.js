@@ -47,7 +47,7 @@ export class FlightModel {
 
             const req = unirest(
                 "GET", 
-                `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${origin}/${destination}/${sDate}`);
+                `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${origin}-sky/${destination}-sky/${sDate}`);
                 
             req.headers({
                 "x-rapidapi-host": api.host,
@@ -70,7 +70,9 @@ export class FlightModel {
                     const carriers = res.body['Carriers'];
                     const currencies = res.body['Currencies'];
                     resolve({
-                        outBoundDate: sDate,
+                        origin: origin,
+                        destination: destination,
+                        outBoundDate: sDate,                        
                         quotes: quotes,
                         carriers: carriers,
                         currencies: currencies

@@ -14,6 +14,10 @@ export interface IBrowseFlightsParams {
     month: string;
 };
 
+export const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
 export interface IBrowseFlightsPromise {
     sDate: string;
     promiseList: Promise<any>[];

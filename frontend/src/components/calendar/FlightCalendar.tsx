@@ -2,7 +2,9 @@ import React, { FunctionComponent, useState } from "react";
 import Calendar from 'react-calendar';
 
 type CalendarProps = {    
-    onChange:(evt: any) => void
+    onChange:(evt: any) => void,
+    display: boolean,    
+    value: string
 };
 
 const FlightCalendar: FunctionComponent<CalendarProps> = (props) =>{
@@ -37,19 +39,24 @@ const FlightCalendar: FunctionComponent<CalendarProps> = (props) =>{
         }        
     };
 
+    const flightContent = props.display && props.value!=='' ? <div className="z-40 absolute shadow text-black">
+                            <Calendar 
+                                onChange={dateHandler}
+                                minDetail="month"
+                                prevLabel={''}
+                                prev2Label={''}
+                                nextLabel={''}
+                                next2Label={''}
+                                showNeighboringMonth={false}
+                                value={new Date(props.value)}
+                                tileContent={tileContentDisplay}/>                                
+                            </div>
+                            : <div className="z-40 mt-32 text-blue-300 textShadow">
+                                <h1>&quot;<em>Fill Form Details to display Fares for the month in Calendar view</em>&quot;</h1>
+                            </div>;
     return (
         <React.Fragment>
-            <div className="z-40 absolute shadow text-black">
-                <Calendar 
-                    onChange={dateHandler}
-                    minDetail="month"
-                    prevLabel={''}
-                    prev2Label={''}
-                    nextLabel={''}
-                    next2Label={''}
-                    showNeighboringMonth={false}
-                    tileContent={tileContentDisplay}/>
-            </div>
+            {flightContent}
         </React.Fragment>
     );
 };

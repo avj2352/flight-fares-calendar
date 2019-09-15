@@ -9,8 +9,8 @@ export class FlightsController {
         // console.log('Calling createSession');        
         const flight = new FlightModel();
         flight.browseFlights({
-            origin: `${req.body.origin}-sky`,
-            destination: `${req.body.destination}-sky`,
+            origin: `${req.body.origin}`,
+            destination: `${req.body.destination}`,
             sDate: req.body.sDate,            
         }).then(
             success => {

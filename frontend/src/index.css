@@ -8615,6 +8615,10 @@ h1 {
   cursor: pointer;
 }
 
+.textShadow {
+  text-shadow: 1px 1px 1px rgb(75, 75, 75);
+}
+
 .react-calendar__tile {
   height: 55px;
 }

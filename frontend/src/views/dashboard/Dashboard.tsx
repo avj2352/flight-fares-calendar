@@ -7,19 +7,20 @@ import {ISession, createSession} from './../../common/async/async-requests';
 import FlightCalendar from '../../components/calendar/FlightCalendar';
 import Footer from '../../components/footer/Footer';
 import FareDetailsForm from '../../components/fare-details-form/FareDetailsForm';
-import { getSinglePromise, IBrowseFlightsPromise, getMonthlyPromiseList } from './../../components/fare-details-form/month-details';
+import { monthNames, getSinglePromise, IBrowseFlightsPromise, getMonthlyPromiseList } from './../../components/fare-details-form/month-details';
 
 // our components props accept a number for the initial value
 const Dashboard:FunctionComponent<{}> = () => {
-  const appContext = useContext(AppContext);  
+  const appContext = useContext(AppContext);
+  // states
+  const [footerDisplay, setFooterDisplay] = useState(false);
+  const [flightDisplay, setFlightDisplay] = useState(false);
+  const [calendarDate, setCalendarDate] = useState('');  
 
-  // event handling
-  const displayAppInfo = ():void => {
-      appContext.addNotification('ABOUT', `${appContext.name} version ${appContext.version}`, 'info', 2000);
-  }
-
+  // Calendar date handler
   const dateHandler = (date: any) => {
     console.log('Date Changed !', date);
+    setFooterDisplay(true);
   }
 
   const submitForm = (data: any) => {
@@ -28,6 +29,9 @@ const Dashboard:FunctionComponent<{}> = () => {
     const query: IBrowseFlightsPromise = getMonthlyPromiseList({origin, destination, month});
     Promise.all(query.promiseList)
     .then (result => {
+      setFlightDisplay(true);
+      appContext.addNotification(`${origin} > ${destination}`, `showing fares for the month: ${monthNames[new Date(query.sDate).getMonth()]}`, 'success', 5000);
+      setCalendarDate(query.sDate);
       appContext.removeNotification(noticeId);
       console.log('response is: ', result);
     }, error => {
@@ -50,14 +54,14 @@ const Dashboard:FunctionComponent<{}> = () => {
             <p className="mt-2 md:mt-0 mx-2 uppercase tracking-loose w-full">Fill in the below flight details</p>
             <FareDetailsForm onSubmit={submitForm}/>
             <div className="w-full relative flex flex-wrap flex-row justify-center">
-              <FlightCalendar onChange={dateHandler}/>
+              <FlightCalendar value={calendarDate} display={flightDisplay} onChange={dateHandler}/>
             </div>
 
           </div>
         </div>
       <WaveIcon/>
       </div>
-      <Footer title={`FARE DETAILS`}/>
+      <Footer display={footerDisplay} title={`FARE DETAILS`}/>
     </React.Fragment>
   );
   
