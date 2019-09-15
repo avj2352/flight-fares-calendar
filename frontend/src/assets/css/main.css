@@ -26,3 +26,55 @@ h1 {
 .btn-blue:focus {
     @apply shadow-outline;
 }
+
+.navbar {
+    transition: all 3s ease;
+}
+
+.gradient {
+    background: linear-gradient(0deg, #2699FB 0%, #1e52b4 100%);
+    /* height:30rem; */
+}
+
+.wave {
+    top: 6rem;
+}
+
+.radio-group input{
+    cursor: pointer;
+}
+
+.textShadow {
+    text-shadow: 1px 1px 1px rgb(75, 75, 75);
+}
+
+.react-calendar__tile {    
+    height: 55px;
+}
+
+.cell-amount {
+    color: #2699FB;
+    font-size: 10px;
+}
+
+.react-calendar__tile--active .cell-amount {
+    color: white;
+}
+
+.footer {
+    margin-top: 15rem;
+}
+
+/* Medium (md) */
+@media (min-width: 768px) {
+    .footer {
+        margin-top: 10rem;
+    }   
+}
+
+/* Large (lg) */
+@media (min-width: 1024px) { 
+    .footer {
+        margin-top: 7rem;
+    }   
+}
