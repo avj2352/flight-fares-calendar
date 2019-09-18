@@ -66,7 +66,6 @@ export const month_data: IMonthDates[] = [
     {
         month: 'SEP', 
         dates: [
-            '2019-09-17', 
             '2019-09-18', 
             '2019-09-19',
             '2019-09-20',
