@@ -1,3 +1,27 @@
+Dear Joydeep,
+
+Very Good Morning,
+
+As requested, please find the details of the assignment _(selected - Assignment - A )_ below:
+
+- Assignment selected: _Assignment - A: Flight Fares Calendar_
+- Time of Submission: _16th September 2019 - 4 AM IST Timings_
+- The Live working version of the Assignment can be [Shortened URL - **Flight Fares Calendar**](https://bit.ly/2miObda)
+- Alternate Link - https://flight-fares-calendar.herokuapp.com/
+- Github Repo can be found here - [Gihub Link](https://github.com/avj2352/flight-fares-calendar)
+
+I have also attached my Solution Design / Approach as a document (under the label - Approach.pdf)
+
+Please revert for any clarifications. I will also forward the same via Whatsapp.
+
+_Eagerly awaiting feedback and review outcome :)_
+
+Regards,
+- Pramod AJ
+- pramod.jingade@gmail.com
+- 9845111324
+
+
 # About
 
 The assignment selected is: - **Assignment A**:
