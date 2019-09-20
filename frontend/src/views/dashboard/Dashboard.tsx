@@ -7,7 +7,7 @@ import {ISession, createSession} from './../../common/async/async-requests';
 import FlightCalendar from '../../components/calendar/FlightCalendar';
 import Footer from '../../components/footer/Footer';
 import FareDetailsForm from '../../components/fare-details-form/FareDetailsForm';
-import { monthNames, getSinglePromise, IBrowseFlightsPromise, getMonthlyPromiseList } from './../../components/fare-details-form/month-details';
+import { monthNames, getSinglePromise, IBrowseFlightsPromise, getMonthlyPromiseList, reflect } from './../../components/fare-details-form/month-details';
 
 // our components props accept a number for the initial value
 const Dashboard:FunctionComponent<{}> = () => {
@@ -27,14 +27,23 @@ const Dashboard:FunctionComponent<{}> = () => {
   }
 
   const submitForm = (data: any) => {
+    let temp: any[] = [];
     setFooterDisplay(false);
     const {origin, destination, month} = data;    
     const noticeId = appContext.addNotification('FETCHING DETAILS', `Fetching Details, please wait...`, 'info', 10000);
     const query: IBrowseFlightsPromise = getMonthlyPromiseList({origin, destination, month});
-    Promise.all(query.promiseList)
-    .then (result => {
+    Promise.all(query.promiseList.map(reflect))
+    .then ((results:any[]): void => {
+      results.map((result: any): void => {
+        if (result.status === 'fulfilled') {
+          temp.push(result.value);
+        } else {
+          console.log('Error fetching data: ', result.reason);
+          appContext.addNotification('ERROR', `Error while fetching data`, 'danger', 2000);
+        }
+      });
       setFlightDisplay(true);  
-      setCalendarResult(result);
+      setCalendarResult(temp);
       appContext.addNotification(`${origin} > ${destination}`, `showing fares for the month: ${monthNames[new Date(query.sDate).getMonth()]}`, 'success', 5000);
       setCalendarDate(query.sDate);
       appContext.removeNotification(noticeId);

@@ -25,6 +25,17 @@ export interface IBrowseFlightsPromise {
     promiseList: Promise<any>[];
 }
 
+export const reflect = (promise: Promise<any>): any => {
+    return promise.then(
+      (v) => {
+        return { status: 'fulfilled', value: v };
+      },
+      (error) => {
+        return { status: 'rejected', reason: error };
+      }
+    );
+};
+
 export const monthOptions: IOptions[] = [
     { key: 'SEP', display: 'September 2019'},
     { key: 'OCT', display: 'October 2019'},
@@ -65,9 +76,7 @@ export const getMonthlyPromiseList = (input: IBrowseFlightsParams): IBrowseFligh
 export const month_data: IMonthDates[] = [
     {
         month: 'SEP', 
-        dates: [
-            '2019-09-18', 
-            '2019-09-19',
+        dates: [            
             '2019-09-20',
             '2019-09-21',
             '2019-09-22',

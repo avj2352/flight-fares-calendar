@@ -38,27 +38,7 @@ const FlightCalendar: FunctionComponent<CalendarProps> = (props) =>{
                         return null;
                     }
                 });
-            } else {
-                switch(date.getDay()) {
-                    case 0:
-                        return <p className="cell-amount">$ 100</p>;
-                    case 1:
-                        return <p className="cell-amount">$ 300</p>;
-                    case 2:
-                        return <p className="cell-amount">$ 400</p>;
-                    case 3:
-                        return <p className="cell-amount">$ 450</p>;
-                    case 4:
-                        return <p className="cell-amount">$ 500</p>;
-                    case 5:
-                        return <p className="cell-amount">$ 600</p>;
-                    case 6:
-                        return <p className="cell-amount">$ 650</p>;
-    
-                    default:
-                        return null;
-                }
-            }            
+            }          
         }        
     };
 
