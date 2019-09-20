@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "e96d89d2-a5d0-43e7-95fe-f45b43bf7919",
+		"name": "Flight-search-calendar",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Session - app",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"origin\": \"SIN\",\n\t\"destination\": \"KUL\",\n\t\"sDate\": \"2019-09-14\",\n\t\"eDate\": \"2019-09-30\"\n}"
+				},
+				"url": {
+					"raw": "https://flight-fares-calendar.herokuapp.com/session",
+					"protocol": "https",
+					"host": [
+						"flight-fares-calendar",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"session"
+					]
+				},
+				"description": "Create Session using our backend"
+			},
+			"response": []
+		},
+		{
+			"name": "Browse Flights - app",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"origin\": \"KUL\",\n\t\"destination\": \"SFO\",\n\t\"sDate\": \"2020-10-01\"\n}"
+				},
+				"url": {
+					"raw": "https://flight-fares-calendar.herokuapp.com/flights",
+					"protocol": "https",
+					"host": [
+						"flight-fares-calendar",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"flights"
+					]
+				},
+				"description": "API to get Quotes for a given outbound date"
+			},
+			"response": []
+		},
+		{
+			"name": "Get flight Fares - Heroku",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"origin\": \"KUL\",\n\t\"destination\": \"SFO\",\n\t\"sDate\": \"2019-10-01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://flight-fares-calendar.herokuapp.com/flights",
+					"protocol": "https",
+					"host": [
+						"flight-fares-calendar",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"flights"
+					]
+				},
+				"description": "Get Flight Fares request hosted on heroku"
+			},
+			"response": []
+		}
+	]
+}

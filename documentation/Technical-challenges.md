@@ -76,3 +76,46 @@ Although both Backend & Frontend projects have unit testing configured and stub 
 A Better alternative to `month-details.ts` would be to come up with a class which dynamcially populates dates for a selected month (maybe with / without the help of date libraries). This way all the query dates need not be hard-coded as in `month-details.ts` module.
 
 ---
+
+### 5. Promise.all vs Promise.allSettled challenge
+
+Recently observed (18th & 19th September 2019) - that the Browse Flights API was failing for most of the dates. However, because the `Promise.all()` method would only work _IF ALL REQUESTS PASSED_ would mostly end up with no calendar being shown
+
+### Solution - Use Promise.allSettled instead
+
+I simple switched the Promise.all() method with the design pattern for Promise.allSettled. Other alternatives was use `core-js` allSettled / `bluebird` allSettled / `q` allSettled libraries.
+
+```typescript
+const reflect = (promise: Promise<any>): any => {
+    return promise.then(
+      (v) => {
+        return { status: 'fulfilled', value: v };
+      },
+      (error) => {
+        return { status: 'rejected', reason: error };
+      }
+    );
+};
+
+Promise.all(query.promiseList.map(reflect))
+    .then ((results:any[]): void => {
+      results.map((result: any): void => {
+        if (result.status === 'fulfilled') {
+          temp.push(result.value);
+        } else {
+          console.log('Error fetching data: ', result.reason);
+          appContext.addNotification('ERROR', `Error while fetching data`, 'danger', 2000);
+        }
+      });
+      setFlightDisplay(true);  
+      setCalendarResult(temp);
+      appContext.addNotification(`${origin} > ${destination}`, `showing fares for the month: ${monthNames[new Date(query.sDate).getMonth()]}`, 'success', 5000);
+      setCalendarDate(query.sDate);
+      appContext.removeNotification(noticeId);
+      // console.log('response is: ', result);
+    }, error => {
+      appContext.removeNotification(noticeId);
+      appContext.addNotification('ERROR', `Error while fetching data`, 'danger', 5000);
+      console.log(error);
+    });
+```
